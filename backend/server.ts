@@ -5,3 +5,5 @@ app.get("/", (req, res) => {
 });
 
 app.use(ErrorLogger);
+
+export default app;
