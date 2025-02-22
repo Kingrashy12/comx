@@ -13,7 +13,7 @@ export default defineConfig({
     fileBasedRouting: true,
   },
   dev: {
-    disableEncryption: false,
+    disableEncryption: true,
   },
   rateLimit: {
     limit: 15,
