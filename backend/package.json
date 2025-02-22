@@ -22,6 +22,7 @@
     "jsonwebtoken": "^9.0.2",
     "nexujs": "^0.1.30",
     "nodemailer": "^6.10.0",
+    "nodemon": "^3.1.9",
     "pg": "^8.13.3"
   },
   "devDependencies": {
