@@ -84,8 +84,6 @@ export const registerAccount: NexuHandler = async (req, res) => {
 };
 
 export const login: NexuHandler = async (req, res) => {
-  console.log("key_PIUBLIC:", process.env.NEXU_PUBLIC_KEY);
-  console.log("key-PRIVATE:", process.env.NEXU_PRIVATE_KEY);
   try {
     const { email, password } = req.body;
     let user;
