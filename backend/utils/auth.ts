@@ -1,4 +1,5 @@
-import { query } from "../config/postgresClient";
+// import { query } from "../config/postgresClient";
+import { query } from "../config/neon";
 import { CorporateFileds, IndividualFileds } from "../types/auth";
 
 export const checkUserExists = async (email: string, phone_number: string) => {
@@ -7,7 +8,7 @@ export const checkUserExists = async (email: string, phone_number: string) => {
     [email, phone_number]
   );
 
-  return result?.rowCount !== 0;
+  return result.length !== 0;
 };
 
 export const checkCompanyExists = async (email: string) => {
@@ -16,7 +17,7 @@ export const checkCompanyExists = async (email: string) => {
     [email]
   );
 
-  return result?.rowCount !== 0;
+  return result.length !== 0;
 };
 
 const createCorporate = async ({
@@ -38,7 +39,7 @@ const createCorporate = async ({
       password,
     ]
   );
-  return data?.rows[0];
+  return data[0];
 };
 
 const createIndividual = async ({
@@ -54,7 +55,7 @@ const createIndividual = async ({
      RETURNING id, first_name, last_name, email, phone_number`,
     [first_name, last_name, email, phone_number, password]
   );
-  return data?.rows[0];
+  return data[0];
 };
 
 export { createCorporate, createIndividual };

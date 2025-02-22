@@ -1,6 +1,6 @@
 import { NexuHandler, NexuResponse, throwError } from "nexujs";
 import { comparePassword, hashPassword } from "../utils/password";
-import { query } from "../config/postgresClient";
+// import { query } from "../config/postgresClient";
 import {
   checkCompanyExists,
   checkUserExists,
@@ -12,6 +12,7 @@ import { CorporateAuthRes, IndividualAuthRes } from "../types/auth";
 import { sendOTP } from "../utils/send-otp";
 import { sendMail } from "../utils/send-mail";
 import { PasswordChangeTemp } from "../utils/email-temp";
+import { query } from "../config/neon";
 
 export const registerAccount: NexuHandler = async (req, res) => {
   const { type, password, confirm_password, ...details } = req.body;
@@ -92,8 +93,8 @@ export const login: NexuHandler = async (req, res) => {
       email,
     ]);
 
-    if (result?.rows.length) {
-      user = result.rows[0];
+    if (result.length !== 0) {
+      user = result[0];
       type = "individual";
     } else {
       result = await query(
@@ -101,8 +102,8 @@ export const login: NexuHandler = async (req, res) => {
         [email]
       );
 
-      if (result?.rows.length) {
-        user = result.rows[0];
+      if (result.length !== 0) {
+        user = result[0];
         type = "corporate";
       }
     }
@@ -160,12 +161,12 @@ export const resetPassword: NexuHandler = async (req, res) => {
       [email]
     );
 
-    if (user?.rowCount !== 0) {
+    if (user.length !== 0) {
       accountExits = true;
-      name = user?.rows[0].first_name;
-    } else if (corp?.rowCount !== 0) {
+      name = user[0].first_name;
+    } else if (corp.length !== 0) {
       accountExits = true;
-      name = corp?.rows[0].company_name;
+      name = corp[0].company_name;
     } else {
       accountExits = false;
     }
@@ -214,8 +215,8 @@ export const changePassword: NexuHandler = async (req, res) => {
       [hashedPassword, email]
     );
 
-    if (updateIndividual?.rowCount! > 0) {
-      const firstName = updateIndividual?.rows[0].first_name;
+    if (updateIndividual.length! > 0) {
+      const firstName = updateIndividual[0].first_name;
       await sendPasswordChangeEmail(email, firstName);
       return successResponse(res);
     }
@@ -226,8 +227,8 @@ export const changePassword: NexuHandler = async (req, res) => {
       [hashedPassword, email]
     );
 
-    if (updateCorporate?.rowCount! > 0) {
-      const companyName = updateCorporate?.rows[0].company_name;
+    if (updateCorporate.length! > 0) {
+      const companyName = updateCorporate[0].company_name;
       await sendPasswordChangeEmail(email, companyName);
       return successResponse(res);
     }

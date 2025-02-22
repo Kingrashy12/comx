@@ -1,7 +1,8 @@
 import { generateId } from "nexujs";
 import { sendMail } from "./send-mail";
 import { OtpTemp } from "./email-temp";
-import { query } from "../config/postgresClient";
+import { query } from "../config/neon";
+// import { query } from "../config/postgresClient";
 
 export const sendOTP = async (to: string, subject: string, name: string) => {
   try {
@@ -27,11 +28,11 @@ export const verifyOtp = async (email: string, otp: string) => {
     [email, otp]
   );
 
-  if (result?.rowCount === 0) {
+  if (result?.length === 0) {
     return { success: false, message: "Invalid OTP" };
   }
 
-  const expires_at = result?.rows[0]?.expires_at;
+  const expires_at = result[0]?.expires_at;
 
   if (new Date() > new Date(expires_at)) {
     return { success: false, message: "OTP has expired" };
