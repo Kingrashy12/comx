@@ -9,5 +9,6 @@ const client = new NexuClient({
 });
 
 export const apiClient = client.createApiClient({
-  baseUrl: "http://localhost:5000",
+  // baseUrl: "http://localhost:5000",
+  baseUrl: "https://comx-production.up.railway.app",
 });

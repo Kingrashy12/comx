@@ -16,6 +16,6 @@ export default defineConfig({
     disableEncryption: true,
   },
   rateLimit: {
-    limit: 15,
+    limit: 50,
   },
 });
