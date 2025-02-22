@@ -1,4 +1,4 @@
-# Project Name
+# ComX
 
 ## 🚀 Frontend Tech
 
