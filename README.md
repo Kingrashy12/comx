@@ -12,7 +12,6 @@
 
 ### 🛠 Tech Stack
 
-- **Express.js** - Fast, minimalist web framework for Node.js
 - **Nexu.js** - A scalable backend library built on top of Express.js.
 - **PostgreSQL** - Relational database system
 - **Nodemailer** - Email sending library
