@@ -16,7 +16,9 @@ export const VerifyOtp: NexuHandler = async (req, res) => {
   try {
     const { email, otp } = req.body;
     const data = await verifyOtp(email, otp);
-    res.status(200).json(data);
+    if (data.success) {
+      return res.status(200).json(data);
+    } else return res.status(400).json(data);
   } catch (error) {
     return throwError({ res, status: "500", error });
   }
