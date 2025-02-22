@@ -25,7 +25,7 @@ const SelectTrigger: React.FC<SelectTriggerInterface> = ({
       )}
     >
       <span className="font-roboto text-muted truncate text-sm">
-        {label.length > 1 ? label : placeholder}
+        {String(label).length > 1 ? label : placeholder}
       </span>
       <Icon
         icon={open ? GoChevronUp : GoChevronDown}
