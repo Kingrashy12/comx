@@ -6,7 +6,7 @@
   "private": "true",
   "scripts": {
     "build": "tsc",
-    "start": "nexujs start",
+    "start": "nexujs start:ts",
     "dev": "nexujs dev:ts",
     "serve": "tsc && node dist/server.js",
     "update": "nexujs-cli update-deps"
@@ -20,7 +20,7 @@
     "@types/jsonwebtoken": "^9.0.8",
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",
-    "nexujs": "^0.1.30",
+    "nexujs": "^0.1.31",
     "nodemailer": "^6.10.0",
     "pg": "^8.13.3"
   },
