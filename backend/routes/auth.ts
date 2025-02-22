@@ -11,7 +11,6 @@ const AuthRoutes = nexuRouter;
 AuthRoutes.post(
   "/register",
   validateFields(["type", "password"]),
-  validateEmail,
   registerAccount
 );
 
