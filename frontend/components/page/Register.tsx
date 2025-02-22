@@ -6,7 +6,6 @@ import { AuthCard } from "../cards";
 import { CorpAuth, UserAuth } from "../layout";
 import { useAuthFlow } from "@/context/auth-flow";
 import Status from "../ui/Status";
-
 import { useAuthRedirect } from "@/hooks/redirect";
 
 const Register = () => {
@@ -19,6 +18,8 @@ const Register = () => {
     individual: UserAuth,
   };
 
+  const AuthComponent = Auth[account_type][regState];
+
   return (
     <Box column center fullWidth className="gap-5 py-5">
       <AuthCard
@@ -26,7 +27,7 @@ const Register = () => {
         header="Register new account"
         subHeader="Sign up for an account and start trading today"
       >
-        {Auth[account_type][regState]()}
+        <AuthComponent />
       </AuthCard>
 
       <Status />

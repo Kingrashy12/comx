@@ -3,10 +3,12 @@ import { Box, Button } from "@/components/ui";
 import { useAuthFlow } from "@/context/auth-flow";
 import { clx } from "@/utils/clx";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const AuthSuccess = () => {
   const { individualForm } = useAuthFlow();
+  const router = useRouter();
   return (
     <Box fullWidth center className="gap-4" column>
       <Image alt="success" src={SuccessSvg} width={273} height={273} />
@@ -21,6 +23,7 @@ const AuthSuccess = () => {
         className="font-medium uppercase text-sm"
         colorScheme="danger"
         variant="ghost"
+        onClick={() => router.push("/dashboard")}
       >
         go to dashboard
       </Button>
