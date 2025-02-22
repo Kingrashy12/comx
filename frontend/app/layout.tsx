@@ -6,6 +6,7 @@ import Container from "@/components/overlays/container";
 
 const roboto = Roboto({
   variable: "--font-roboto",
+  subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
 
