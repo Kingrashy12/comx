@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #f8fafb;
+  font-family: var(--font-roboto);
+}
+
+@layer utilities {
+  .text {
+    @apply font-roboto text-sm-bold font-normal leading-[16.41px] text-text;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(212, 212, 212);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #737373;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}

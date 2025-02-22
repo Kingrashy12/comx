@@ -1,0 +1,36 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with NexuJs-CLI.",
+  "main": "server.ts",
+  "private": "true",
+  "scripts": {
+    "build": "tsc",
+    "start": "nexujs start",
+    "dev": "nexujs dev:ts",
+    "serve": "tsc && node dist/server.js",
+    "update": "nexujs-cli update-deps"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.8",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "nexujs": "^0.1.30",
+    "nodemailer": "^6.10.0",
+    "pg": "^8.13.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.4",
+    "@types/nodemailer": "^6.4.17",
+    "@types/pg": "^8.11.11",
+    "ts-node": "^10.9.2",
+    "tsc-watch": "^6.2.1",
+    "typescript": "^5.7.3"
+  }
+}

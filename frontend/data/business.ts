@@ -1,0 +1,27 @@
+const business = [
+  { label: "Sole Proprietorship", value: "sole_proprietorship" },
+  { label: "Partnership", value: "partnership" },
+  { label: "Limited Liability Company (LLC)", value: "llc" },
+  { label: "Public Limited Company (PLC)", value: "plc" },
+  { label: "Cooperative Society", value: "cooperative" },
+  { label: "Non-Governmental Organization (NGO)", value: "ngo" },
+  { label: "Microfinance Institution", value: "microfinance" },
+  { label: "Retail Business", value: "retail" },
+  { label: "E-commerce", value: "ecommerce" },
+  { label: "Consulting Services", value: "consulting" },
+  { label: "Manufacturing", value: "manufacturing" },
+  { label: "Agriculture & Farming", value: "agriculture" },
+  { label: "Real Estate", value: "real_estate" },
+  { label: "Transportation & Logistics", value: "transportation" },
+  { label: "Hospitality & Tourism", value: "hospitality" },
+  { label: "Health & Medical Services", value: "healthcare" },
+  { label: "Education & Training", value: "education" },
+  { label: "Technology & Software Development", value: "technology" },
+  { label: "Media & Entertainment", value: "media" },
+  { label: "Construction & Engineering", value: "construction" },
+  { label: "Financial Services", value: "financial_services" },
+  { label: "Import & Export", value: "import_export" },
+  { label: "Energy & Power", value: "energy" },
+];
+
+export default business;
