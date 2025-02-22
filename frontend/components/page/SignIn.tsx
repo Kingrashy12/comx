@@ -72,7 +72,9 @@ const SignIn = () => {
       >
         Sign in
       </Button>
-      <Button variant="surface">Back</Button>
+      <Button variant="surface" onClick={() => router.back()}>
+        Back
+      </Button>
     </AuthCard>
   );
 };
