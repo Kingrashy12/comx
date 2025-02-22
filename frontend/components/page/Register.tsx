@@ -7,6 +7,7 @@ import { CorpAuth, UserAuth } from "../layout";
 import { useAuthFlow } from "@/context/auth-flow";
 import Status from "../ui/Status";
 import { useAuthRedirect } from "@/hooks/redirect";
+import Link from "next/link";
 
 const Register = () => {
   const { regState, account_type } = useAuthFlow();
@@ -28,6 +29,12 @@ const Register = () => {
         subHeader="Sign up for an account and start trading today"
       >
         <AuthComponent />
+        <p className="font-roboto text font-normal text-center">
+          Already have an account?{" "}
+          <Link className="text-red-500 hover:underline" href="/auth/sign-in">
+            Sign In
+          </Link>
+        </p>
       </AuthCard>
 
       <Status />

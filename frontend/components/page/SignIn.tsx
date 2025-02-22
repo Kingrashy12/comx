@@ -75,6 +75,12 @@ const SignIn = () => {
       <Button variant="surface" onClick={() => router.back()}>
         Back
       </Button>
+      <p className="font-roboto text mt-1 font-normal text-center">
+        Don&apos;t have an account?{" "}
+        <Link className="text-red-500 hover:underline" href="/auth/register">
+          Register
+        </Link>
+      </p>
     </AuthCard>
   );
 };
