@@ -44,7 +44,15 @@ const LoginDetails = () => {
             <PhoneInput />
           </Box>
         </Box>
-        <NextButton next_stage="OTP" onClick={send}>
+        <NextButton
+          next_stage="OTP"
+          disabled={
+            !individualForm.confirm_password ||
+            !individualForm.password ||
+            !individualForm.phone_number
+          }
+          onClick={send}
+        >
           Verify Account
         </NextButton>
       </Box>

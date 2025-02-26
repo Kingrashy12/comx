@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Drawer } from "../ui";
 import Divider from "../ui/Divider";
-import { IoChevronDown } from "react-icons/io5";
+import { IoChevronDown, IoLogOutOutline } from "react-icons/io5";
 import { Balance, LinkItem } from "../shared/layout";
 import { RiDashboardLine, RiLineChartLine } from "react-icons/ri";
 import { TbMoneybag } from "react-icons/tb";
@@ -37,6 +37,12 @@ const MobileMenu = () => {
               DEMO
             </Button>
             <IoChevronDown size={19} />
+          </Box>
+          <Box
+            itemsCenter
+            className="rounded-lg active:scale-90 cursor-pointer flex-shrink-0 p-2 hover:bg-neutral-100 mt-2 justify-center hidden max-[450px]:flex"
+          >
+            <IoLogOutOutline size={25} />
           </Box>
         </Drawer.Footer>
       </Drawer.Panel>

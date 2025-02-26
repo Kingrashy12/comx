@@ -16,7 +16,7 @@ const DateOfInCorporation = () => {
 
   return (
     <Modal.Root value="date-of-incorporation">
-      <Modal.Panel size="lg" className="bg-transparent shadow-none">
+      <Modal.Panel size="lg" className="!bg-transparent shadow-none">
         <Modal.Content>
           <DatePicker onChange={handleDate} />
         </Modal.Content>

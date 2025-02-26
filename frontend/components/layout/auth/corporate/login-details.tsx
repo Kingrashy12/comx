@@ -46,7 +46,15 @@ const LoginDetails = () => {
           errorMessage={corporateErrors.confirm_password}
         />
 
-        <NextButton next_stage="OTP" onClick={send}>
+        <NextButton
+          next_stage="OTP"
+          disabled={
+            !corporateForm.password ||
+            !corporateForm.confirm_password ||
+            !corporateForm.company_email
+          }
+          onClick={send}
+        >
           Verify Account
         </NextButton>
       </Box>

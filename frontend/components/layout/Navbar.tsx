@@ -6,10 +6,11 @@ import React, { useState } from "react";
 import { Box, Button, Icon } from "../ui";
 import { MdClose, MdOutlineLightMode } from "react-icons/md";
 import { clx } from "@/utils/clx";
-import { IoChevronDown, IoMoon } from "react-icons/io5";
+import { IoChevronDown, IoLogOutOutline, IoMoon } from "react-icons/io5";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { triggerDrawer } from "../provider/drawer";
 import { useDrawer } from "@/context/drawer";
+import { useAuth } from "@/context/auth";
 
 const Balance = ({ label, value }: { label: string; value: string }) => {
   return (
@@ -27,6 +28,7 @@ const Balance = ({ label, value }: { label: string; value: string }) => {
 const Navbar = () => {
   const [mode, setMode] = useState<"light" | "dark">("light");
   const { isOpen } = useDrawer();
+  const { signOut } = useAuth();
 
   const toggleTheme = () => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
@@ -63,7 +65,12 @@ const Navbar = () => {
           )}
           itemsCenter
         >
-          <p className="font-medium font-roboto text-[8px] pl-1 text-[#1E1E1E] uppercase">
+          <p
+            className={clx(
+              "font-medium font-roboto text-[8px] pl-1 text-[#1E1E1E] uppercase",
+              mode === "dark" && "pr-1"
+            )}
+          >
             {mode}
           </p>
 
@@ -83,9 +90,16 @@ const Navbar = () => {
         <Balance label="SECURITIES VALUE" value="8,374,763" />
         <Balance label="LOAN BALANCE" value="7,542,246" />
       </Box>
-      <Box itemsCenter className="px-6 gap-2 max-[550px]:hidden">
+      <Box itemsCenter className="px-6 gap-2 max-[550px]:hidden border-r-2">
         <Button className="h-[35px] text-[10px]">DEMO</Button>
         <IoChevronDown size={19} />
+      </Box>
+      <Box
+        onClick={signOut}
+        itemsCenter
+        className="rounded-lg active:scale-90 cursor-pointer p-2 hover:bg-neutral-100 max-[450px]:hidden ml-2 justify-center"
+      >
+        <IoLogOutOutline size={25} />
       </Box>
     </div>
   );

@@ -7,8 +7,12 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 const AuthSuccess = () => {
-  const { individualForm } = useAuthFlow();
+  const { individualForm, account_type, corporateForm } = useAuthFlow();
   const router = useRouter();
+  const name =
+    account_type === "corporate"
+      ? corporateForm.company_name
+      : individualForm.first_name;
   return (
     <Box fullWidth center className="gap-4" column>
       <Image alt="success" src={SuccessSvg} width={273} height={273} />
@@ -16,8 +20,8 @@ const AuthSuccess = () => {
         Registration Complete
       </h2>
       <p className={clx("text font-light text-[#252631] text-center")}>
-        Dear [{individualForm.first_name}]. Your registration is now complete.
-        You may proceed to your dashboard and start trading commodities.
+        Dear [{name}]. Your registration is now complete. You may proceed to
+        your dashboard and start trading commodities.
       </p>
       <Button
         className="font-medium uppercase text-sm"

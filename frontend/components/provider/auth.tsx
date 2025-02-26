@@ -26,7 +26,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const signOut = () => {};
+  const signOut = () => {
+    localStorage.removeItem("COMX_AUTH");
+    setIsAuthenticated(false);
+    redirect("/welcome");
+  };
 
   const useValidate = () => {
     useEffect(() => {
