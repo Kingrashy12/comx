@@ -1,4 +1,8 @@
-.zoltra
-dist
-node_modules
+# ignore these anywhere
+dist/
+node_modules/
 *.env*
+.zoltra/
+
+# BUT do NOT ignore .zoltra inside z_out
+!z_out/.zoltra/
