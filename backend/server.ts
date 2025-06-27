@@ -6,7 +6,7 @@ const app = new Zoltra();
 // setup routes, middlewares, etc.
 app.register(corsPlugin());
 
-export default app.handler;
+export default app;
 
 // export async function startServer() {
 //   try {
