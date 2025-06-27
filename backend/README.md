@@ -1,37 +1,76 @@
-# NexuJS Project
+<div align='center'>
+  <img alt="Zoltra" src='https://github.com/zoltrajs/zoltra/blob/main/meta/zoltrajs-logo.png' width="80" height="80" />
+  <h1>Zoltra</h1>
+  <p>A <strong>lightweight</strong> and intuitive web server framework</p>
+  
+  [![npm](https://img.shields.io/npm/v/zoltra?color=2962FF)](https://www.npmjs.com/package/zoltra)
+  [![License](https://img.shields.io/badge/license-MIT-6200EA)](LICENSE)
+  [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-007ACC)](https://www.typescriptlang.org/)
 
-This is a **Nexu** project bootstrapped with [nexujs-cli]().
+[Documentation]()
 
-## Getting Started
+</div>
 
-First, run the development server:
+---
 
-```bash
-npm run dev
+## Getting Started:
+
+1. Create a new project using Zoltra CLI:
+
+   ```bash
+   npx zoltra@alpha create myapp --language
+   ```
+
+   Replace `--language` with either `--typescript` or `--javascript` depending on your preference.
+
+   - If no language is specified, the default is TypeScript.
+
+   Use `--no-git` to skip git initialization
+
+   This command creates a new Zoltra project named `myapp` and sets it up according to the language option you choose.
+
+2. Start the application in development mode:
+
+   After creating your project, navigate to the newly created folder and run:
+
+   ```
+   npm run dev
+   ```
+
+   This will start the Zoltra server, and you can begin building your application.
+
+3. You’re ready to start building your Zoltra-powered application!
+
+## Quick Guide
+
+### File-Based Routing
+
+Zoltra uses **File-Based Routing**, which means you define routes simply by creating files in the `routes` directory. This eliminates the need for manual route registration and simplifies routing configuration.
+
+**Example**
+
+```ts
+// routes/users.js
+import { defineRoutes } from "zoltra";
+import { getUserById, getUsers } from "../controllers/users.controller";
+
+export const routes = defineRoutes([
+  {
+    method: "GET",
+    path: "/",
+    handler: getUsers,
+    middleware: [],
+  },
+  {
+    method: "GET",
+    path: "/:id",
+    handler: getUserById,
+  },
+]);
 ```
 
-The server will run on [http://localhost:5000](http://localhost:5000) by default.
+Zoltra handles your server's route management automatically, allowing you to focus on building the logic without needing to manually configure routes in your server code.
 
-You can modify the routes and API endpoints in the routes directory. The server will auto-reload when changes are made.
+## Alpha Phase Notice:
 
-## Updating Dependencies
-
-To keep your project up to date with the latest versions of its dependencies, run the following command:
-
-```bash
-npm run update
-```
-
-This will automatically update all dependencies to their latest versions.
-
-## Changing Default Configuration
-
-If you need to change the default configuration for your NexuJS project, you can do so by modifying the `nexu.config` file. This file allows you to customize various aspects of the project, such as port settings, middleware, routes, and more.
-
-For more information on configuration options, refer to the [NexuJS Documentation](https://github.com/Kingrashy12/nexu/blob/main/packages/nexujs/README.md#configuration).
-
-## Learn More
-
-To learn more about Nexu and backend development, take a look at the following resources:
-
-- [Nexu Documentation](https://github.com/Kingrashy12/nexu#readme) - Learn about Nexu features and API.
+Zoltra is currently in its **Alpha Phase** (Stage 2), which means a lot is still in progress. Expect frequent updates and improvements. We appreciate your feedback as the Zoltra team continues to evolve the framework!

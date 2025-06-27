@@ -62,18 +62,18 @@ cd backend
 npm install
 ```
 
-3️⃣ Generate the `.env` file with required keys
+3️⃣ Generate `JWT_AUTH_SECRET`
 
 ```bash
-npx nexujs-cli mk env
+npm run gen-auth
 ```
 
 ⚠️ **Important**: The generated .env file will not include the following required variables. You must add them manually:
 
 ```bash
-JWT_SECRET=your_jwt_secret_key
 EMAIL_USER=your_email@example.com
 EMAIL_PASS=your_email_password
+DATABASE_URL='your_neondb_connection_string'
 ```
 
 4️⃣ Run the backend server

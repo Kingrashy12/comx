@@ -1,19 +1,17 @@
-import { nexuRouter, validateEmail, validateFields } from "nexujs";
 import { SendOtp, VerifyOtp } from "../controller/otp";
+import { defineRoutes, validateEmail, validateFields } from "zoltra";
 
-const OTPRoutes = nexuRouter;
-
-OTPRoutes.post(
-  "/send",
-  validateFields(["email", "name"]),
-  validateEmail,
-  SendOtp
-);
-OTPRoutes.patch(
-  "/verify",
-  validateFields(["email", "otp"]),
-  validateEmail,
-  VerifyOtp
-);
-
-export = OTPRoutes;
+export const routes = defineRoutes([
+  {
+    method: "POST",
+    path: "/send",
+    handler: SendOtp,
+    middleware: [validateFields(["email", "name"]), validateEmail],
+  },
+  {
+    method: "PATCH",
+    path: "/verify",
+    handler: VerifyOtp,
+    middleware: [validateFields(["email", "otp"]), validateEmail],
+  },
+]);

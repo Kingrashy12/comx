@@ -1,12 +1,19 @@
-import { app, sendContent, ErrorLogger } from "nexujs";
-// import AuthRoutes from "./routes/auth";
+import { Zoltra, Logger, corsPlugin } from "zoltra";
 
-// app.use("/auth", AuthRoutes);
+const logger = new Logger("Server");
 
-app.get("/", (req, res) => {
-  res.send(sendContent);
-});
+export async function startServer() {
+  try {
+    const app = new Zoltra();
 
-app.use(ErrorLogger);
+    app.register(corsPlugin());
 
-export default app;
+    await app.start();
+  } catch (error) {
+    const err = error as Error;
+    logger.error(`Failed to start server: ${err.message}`);
+    process.exit(1);
+  }
+}
+
+startServer();

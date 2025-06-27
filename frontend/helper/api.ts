@@ -1,6 +1,7 @@
 import { closeLoader, openLoader } from "@/components/ui/BackgroundLoader";
 import { toast } from "@/components/ui/Toast";
-import { apiClient } from "@/constants/nexu.client";
+import apiClient, { getError } from "@/constants/apiClient";
+// import { apiClient } from "@/constants/nexu.client";
 import {
   ChangePasswordRes,
   OTPResponse,
@@ -15,17 +16,14 @@ import {
   IndividualForm,
 } from "@/types/form";
 
-import { getError } from "nexujs-client";
-
 export const sendOtp = async (form: SendOTPForm) => {
   openLoader(true);
   try {
-    const res = await apiClient.Post<OTPResponse>({
-      url: "/otp/send",
-      data: { ...form },
+    const res = await apiClient.post<OTPResponse>("/otp/send", {
+      ...form,
     });
     form.onSuccess?.();
-    return res;
+    return res.data;
   } catch (error) {
     const errMessage = getError(error);
     toast.error(String(errMessage.message));
@@ -37,11 +35,10 @@ export const sendOtp = async (form: SendOTPForm) => {
 export const verifyOTP = async (form: { email: string; otp: string }) => {
   openLoader(true);
   try {
-    const res = await apiClient.Patch<OTPVerificationResponse>({
-      url: "/otp/verify",
-      data: { ...form },
+    const res = await apiClient.patch<OTPVerificationResponse>("/otp/verify", {
+      ...form,
     });
-    return res;
+    return res.data;
   } catch (error) {
     const errMessage = getError(error);
     toast.error(String(errMessage.message));
@@ -53,16 +50,13 @@ export const verifyOTP = async (form: { email: string; otp: string }) => {
 export const createUserCorporate = async (form: CorporateForm) => {
   openLoader(true);
   try {
-    const res = await apiClient.Post<string>({
-      url: "/auth/register",
-      data: {
-        type: "corporate",
-        email: form.company_email,
-        ...form,
-      },
+    const res = await apiClient.post<string>("/auth/register", {
+      type: "corporate",
+      email: form.company_email,
+      ...form,
     });
-    global?.localStorage?.setItem("COMX_AUTH", res);
-    return res;
+    global?.localStorage?.setItem("COMX_AUTH", JSON.stringify(res.data));
+    return res.data;
   } catch (error) {
     const errMessage = getError(error);
     toast.error(String(errMessage.message));
@@ -75,15 +69,12 @@ export const createUserCorporate = async (form: CorporateForm) => {
 export const createUserIndividual = async (form: IndividualForm) => {
   openLoader(true);
   try {
-    const res = await apiClient.Post<string>({
-      url: "/auth/register",
-      data: {
-        type: "individual",
-        ...form,
-      },
+    const res = await apiClient.post<string>("/auth/register", {
+      type: "individual",
+      ...form,
     });
-    global?.localStorage?.setItem("COMX_AUTH", res);
-    return res;
+    global?.localStorage?.setItem("COMX_AUTH", JSON.stringify(res.data));
+    return res.data;
   } catch (error) {
     const errMessage = getError(error);
     toast.error(String(errMessage.message));
@@ -96,14 +87,14 @@ export const createUserIndividual = async (form: IndividualForm) => {
 export const login = async (form: SignInForm) => {
   openLoader(true);
   try {
-    const res = await apiClient.Post<{ message: string; token: string }>({
-      url: "/auth/login",
-      data: form,
-    });
-    toast.success(res.message);
-    global?.localStorage?.setItem("COMX_AUTH", res.token);
+    const res = await apiClient.post<{ message: string; token: string }>(
+      "/auth/login",
+      form
+    );
+    toast.success(res.data.message);
+    global?.localStorage?.setItem("COMX_AUTH", res.data.token);
 
-    return res;
+    return res.data;
   } catch (error) {
     const errMessage = getError(error);
     toast.error(String(errMessage.message));
@@ -116,12 +107,11 @@ export const login = async (form: SignInForm) => {
 export const resetPassword = async (email: string) => {
   openLoader(true);
   try {
-    const res = await apiClient.Post<ResetPasswordRes>({
-      url: "/auth/reset-password",
-      data: { email },
+    const res = await apiClient.post<ResetPasswordRes>("/auth/reset-password", {
+      email,
     });
-    toast.success(res.message);
-    return res;
+    toast.success(res.data.message);
+    return res.data;
   } catch (error) {
     const errMessage = getError(error);
     toast.error(String(errMessage.message));
@@ -138,12 +128,14 @@ export const resetPassword = async (email: string) => {
 export const changePassword = async (form: ChangePasswordForm) => {
   openLoader(true);
   try {
-    const res = await apiClient.Post<ChangePasswordRes>({
-      url: "/reset-password/new-password",
-      data: { ...form },
-    });
-    toast.success(res.message);
-    return res;
+    const res = await apiClient.post<ChangePasswordRes>(
+      "/reset-password/new-password",
+      {
+        ...form,
+      }
+    );
+    toast.success(res.data.message);
+    return res.data;
   } catch (error) {
     const errMessage = getError(error);
     toast.error(String(errMessage.message));

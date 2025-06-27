@@ -1,4 +1,4 @@
-const secret = process.env.JWT_SECRET;
+const secret = process.env.JWT_AUTH_SECRET;
 import jwt from "jsonwebtoken";
 import { CorporateAuthRes, IndividualAuthRes } from "../types/auth";
 

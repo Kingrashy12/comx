@@ -7,7 +7,9 @@ export const query = async <T = Record<string, any>>(
   values?: any[]
 ) => {
   try {
-    const result = values ? await sql(queryText, values) : await sql(queryText);
+    const result = values
+      ? await sql.query(queryText, values)
+      : await sql.query(queryText);
     return result;
   } catch (error) {
     throw new Error(`${(error as Error).message}`);

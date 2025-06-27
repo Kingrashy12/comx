@@ -1,37 +1,40 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "This project was bootstrapped with NexuJs-CLI.",
-  "main": "server.ts",
-  "private": "true",
+  "name": "server",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
-    "start": "nexujs start:ts",
-    "dev": "nexujs dev:ts",
-    "serve": "tsc && node dist/server.js",
-    "update": "nexujs-cli update-deps"
+    "start": "zoltra start:ts",
+    "dev": "zoltra dev:ts",
+    "gen-auth": "node ./scripts/gen-secret.mjs",
+    "pkg": "npm i ../../zoltra/zoltra-0.1.0-alpha.2.tgz",
+    "runTest": "node ./test.req.mjs",
+    "test": "jest",
+    "test-login": "jest login.spec.ts --detectOpenHandles",
+    "test-route": "jest route.spec.ts --detectOpenHandles"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.4",
-    "@types/bcrypt": "^5.0.2",
-    "@types/jsonwebtoken": "^9.0.8",
-    "bcrypt": "^5.1.1",
+    "@neondatabase/serverless": "^1.0.1",
+    "@zoltra-toolkit/node": "^0.1.0-alpha.2",
+    "bcrypt": "^6.0.0",
     "jsonwebtoken": "^9.0.2",
-    "nexujs": "^0.1.31",
-    "nodemailer": "^6.10.0",
-    "pg": "^8.13.3"
+    "nodemailer": "^7.0.3",
+    "zoltra": "file:../../zoltra/zoltra-0.1.0-alpha.2.tgz"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0",
-    "@types/node": "^22.13.4",
+    "@jest/globals": "^30.0.3",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jest": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.0.4",
     "@types/nodemailer": "^6.4.17",
-    "@types/pg": "^8.11.11",
+    "jest": "^30.0.3",
+    "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
-    "tsc-watch": "^6.2.1",
-    "typescript": "^5.7.3"
+    "tsc-watch": "^7.1.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3"
   }
 }

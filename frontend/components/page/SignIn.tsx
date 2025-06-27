@@ -10,10 +10,12 @@ import { login } from "@/helper/api";
 import { useAuth } from "@/context/auth";
 import { useRouter } from "next/navigation";
 import { useAuthRedirect } from "@/hooks/redirect";
+import { useAuthFlow } from "@/context/auth-flow";
 
 const SignIn = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const { signIn } = useAuth();
+  const { setRegState } = useAuthFlow();
   const router = useRouter();
   useAuthRedirect();
 
@@ -77,7 +79,11 @@ const SignIn = () => {
       </Button>
       <p className="font-roboto text mt-1 font-normal text-center">
         Don&apos;t have an account?{" "}
-        <Link className="text-red-500 hover:underline" href="/auth/register">
+        <Link
+          className="text-red-500 hover:underline"
+          href="/auth/register"
+          onClick={() => setRegState("BasicInfo")}
+        >
           Register
         </Link>
       </p>

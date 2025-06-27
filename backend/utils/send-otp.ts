@@ -1,8 +1,13 @@
-import { generateId } from "nexujs";
 import { sendMail } from "./send-mail";
 import { OtpTemp } from "./email-temp";
 import { query } from "../config/neon";
-// import { query } from "../config/postgresClient";
+
+export const generateId = (length: number): string => {
+  const numbers = "0123456789";
+  return Array.from({ length }, () =>
+    numbers.charAt(Math.floor(Math.random() * numbers.length))
+  ).join("");
+};
 
 export const sendOTP = async (to: string, subject: string, name: string) => {
   try {

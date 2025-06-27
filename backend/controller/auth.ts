@@ -1,4 +1,3 @@
-import { NexuHandler, NexuResponse, throwError } from "nexujs";
 import { comparePassword, hashPassword } from "../utils/password";
 // import { query } from "../config/postgresClient";
 import {
@@ -13,16 +12,16 @@ import { sendOTP } from "../utils/send-otp";
 import { sendMail } from "../utils/send-mail";
 import { PasswordChangeTemp } from "../utils/email-temp";
 import { query } from "../config/neon";
+import { ZoltraHandler, ZoltraResponse } from "zoltra";
+import { throwError } from "../utils/request";
 
-export const registerAccount: NexuHandler = async (req, res) => {
+export const registerAccount: ZoltraHandler = async (req, res, next) => {
   const { type, password, confirm_password, ...details } = req.body;
 
   try {
     if (password !== confirm_password) {
-      return throwError({
+      return res.status(400).json({
         error: "Passwords do not match",
-        res,
-        status: "400",
       });
     }
 
@@ -34,9 +33,7 @@ export const registerAccount: NexuHandler = async (req, res) => {
       const userExists = await checkUserExists(email, phone_number);
 
       if (userExists) {
-        return throwError({
-          res,
-          status: "403",
+        return res.status(403).json({
           error: "User Already exists",
           message: "An account with this email or phone number already exists.",
         });
@@ -61,9 +58,7 @@ export const registerAccount: NexuHandler = async (req, res) => {
       const companyExists = await checkCompanyExists(company_email);
 
       if (companyExists) {
-        return throwError({
-          res,
-          status: "403",
+        return res.status(403).json({
           error: "Company Already Exists",
           message: "A company with this email already exists.",
         });
@@ -83,9 +78,10 @@ export const registerAccount: NexuHandler = async (req, res) => {
   }
 };
 
-export const login: NexuHandler = async (req, res) => {
+export const login: ZoltraHandler = async (req, res, next) => {
   try {
     const { email, password } = req.body;
+
     let user;
     let type;
 
@@ -111,7 +107,7 @@ export const login: NexuHandler = async (req, res) => {
     if (!user) {
       return throwError({
         res,
-        status: "400",
+        status: "401",
         message: "Invalid email or password.",
         error: "Authentication failed",
       });
@@ -121,7 +117,7 @@ export const login: NexuHandler = async (req, res) => {
     if (!isValid) {
       return throwError({
         res,
-        status: "400",
+        status: "401",
         message: "Invalid email or password.",
         error: "Authentication failed",
       });
@@ -137,16 +133,11 @@ export const login: NexuHandler = async (req, res) => {
           : signCorporate(user as CorporateAuthRes),
     });
   } catch (error) {
-    return throwError({
-      res,
-      status: "500",
-      error,
-      message: "Internal server error",
-    });
+    next(error);
   }
 };
 
-export const resetPassword: NexuHandler = async (req, res) => {
+export const resetPassword: ZoltraHandler = async (req, res) => {
   try {
     const { email } = req.body;
     let accountExits;
@@ -196,7 +187,7 @@ export const resetPassword: NexuHandler = async (req, res) => {
   }
 };
 
-export const changePassword: NexuHandler = async (req, res) => {
+export const changePassword: ZoltraHandler = async (req, res) => {
   const { email, password, confirm_password } = req.body;
 
   try {
@@ -254,7 +245,7 @@ const sendPasswordChangeEmail = async (email: string, name: string) => {
 };
 
 // Helper function for success response
-const successResponse = (res: NexuResponse) => {
+const successResponse = (res: ZoltraResponse) => {
   return res.status(200).json({
     message: "Your password has been successfully updated!",
     success: true,

@@ -1,7 +1,8 @@
-import { NexuHandler, throwError } from "nexujs";
+import { ZoltraHandler } from "zoltra";
 import { sendOTP, verifyOtp } from "../utils/send-otp";
+import { throwError } from "../utils/request";
 
-export const SendOtp: NexuHandler = async (req, res) => {
+export const SendOtp: ZoltraHandler = async (req, res) => {
   try {
     const { email, name } = req.body;
 
@@ -12,7 +13,7 @@ export const SendOtp: NexuHandler = async (req, res) => {
   }
 };
 
-export const VerifyOtp: NexuHandler = async (req, res) => {
+export const VerifyOtp: ZoltraHandler = async (req, res) => {
   try {
     const { email, otp } = req.body;
     const data = await verifyOtp(email, otp);
