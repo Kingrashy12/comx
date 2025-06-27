@@ -6,6 +6,7 @@
   "scripts": {
     "start": "zoltra start:ts",
     "dev": "zoltra dev:ts",
+    "build": "tsc",
     "gen-auth": "node ./scripts/gen-secret.mjs",
     "pkg": "npm i ../../zoltra/zoltra-0.1.0-alpha.2.tgz",
     "runTest": "node ./test.req.mjs",
