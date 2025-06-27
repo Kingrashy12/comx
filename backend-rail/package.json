@@ -1,0 +1,42 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "zoltra start:ts",
+    "dev": "zoltra dev:ts",
+    "build": "tsc",
+    "build:vercel": "tsc --outDir vercel_output",
+    "gen-auth": "node ./scripts/gen-secret.mjs",
+    "pkg": "npm i ../../zoltra/zoltra-0.1.0-alpha.2.tgz",
+    "runTest": "node ./test.req.mjs",
+    "test": "jest",
+    "test-login": "jest login.spec.ts --detectOpenHandles",
+    "test-route": "jest route.spec.ts --detectOpenHandles"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.1",
+    "@zoltra-toolkit/node": "^0.1.0-alpha.2",
+    "bcrypt": "^6.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^7.0.3",
+    "zoltra": "^0.1.0-alpha.2.0.2"
+  },
+  "devDependencies": {
+    "@jest/globals": "^30.0.3",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jest": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.0.4",
+    "@types/nodemailer": "^6.4.17",
+    "jest": "^30.0.3",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "tsc-watch": "^7.1.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3"
+  }
+}
