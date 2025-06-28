@@ -1,25 +1,25 @@
-import { Zoltra, corsPlugin } from "zoltra";
+import { Logger, Zoltra, corsPlugin } from "zoltra";
 
-// const logger = new Logger("Server");
+const logger = new Logger("Server");
 
-const app = new Zoltra();
-// setup routes, middlewares, etc.
-app.register(corsPlugin());
+// const app = new Zoltra();
+// // setup routes, middlewares, etc.
+// app.register(corsPlugin());
 
-export default app;
+// export default app;
 
-// export async function startServer() {
-//   try {
-//     const app = new Zoltra();
+export async function startServer() {
+  try {
+    const app = new Zoltra();
 
-//     app.register(corsPlugin());
+    app.register(corsPlugin());
 
-//     await app.start();
-//   } catch (error) {
-//     const err = error as Error;
-//     logger.error(`Failed to start server: ${err.message}`);
-//     process.exit(1);
-//   }
-// }
+    await app.start();
+  } catch (error) {
+    const err = error as Error;
+    logger.error(`Failed to start server: ${err.message}`);
+    process.exit(1);
+  }
+}
 
-// startServer();
+startServer();
