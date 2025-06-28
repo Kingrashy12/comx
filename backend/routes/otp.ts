@@ -1,4 +1,4 @@
-import { SendOtp, VerifyOtp } from "../controller/otp";
+import { SendOtp, VerifyOtp } from "../controllers/otp";
 import { defineRoutes, validateEmail, validateFields } from "zoltra";
 
 export const routes = defineRoutes([

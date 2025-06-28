@@ -3,7 +3,7 @@ import {
   login,
   registerAccount,
   resetPassword,
-} from "../controller/auth";
+} from "../controllers/auth";
 import { defineRoutes, validateEmail, validateFields } from "zoltra";
 
 export const routes = defineRoutes([
