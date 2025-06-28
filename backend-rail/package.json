@@ -1,6 +1,6 @@
 {
-  "name": "server",
-  "version": "0.1.0",
+  "name": "server-rail",
+  "version": "1.0.0",
   "private": true,
   "main": "dist/server.js",
   "scripts": {
@@ -10,7 +10,6 @@
     "build:vercel": "tsc --outDir vercel_output",
     "gen-auth": "node ./scripts/gen-secret.mjs",
     "pkg": "npm i ../../zoltra/zoltra-0.1.0-alpha.2.0.15.tgz",
-    "runTest": "node ./test.req.mjs",
     "test": "jest",
     "test-login": "jest login.spec.ts --detectOpenHandles",
     "test-route": "jest route.spec.ts --detectOpenHandles"
