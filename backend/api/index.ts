@@ -5,5 +5,5 @@ const app = new Zoltra();
 
 app.register(corsPlugin());
 app.loadStaticRoutes(routes);
-
+console.log("Routes:", app._routes);
 export default app.handler.bind(app);
