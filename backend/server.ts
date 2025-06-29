@@ -2,10 +2,6 @@ import { Logger, Zoltra, corsPlugin } from "zoltra";
 
 const logger = new Logger("Server");
 
-const app = new Zoltra();
-
-export default app;
-
 async function startServer() {
   try {
     const app = new Zoltra();
