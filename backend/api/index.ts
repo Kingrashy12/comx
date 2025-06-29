@@ -1,5 +1,8 @@
+import { corsPlugin } from "zoltra";
 import app from "../server";
-// @ts-ignore
 import routes from "./routes";
+
+app.register(corsPlugin());
+app.loadStaticRoutes(routes);
 
 export default app.handler.bind(app);

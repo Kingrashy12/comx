@@ -4,13 +4,6 @@ const logger = new Logger("Server");
 
 const app = new Zoltra();
 
-async function initializeApp() {
-  await app.loadRoutes();
-  app.register(corsPlugin());
-}
-
-initializeApp();
-
 export default app;
 
 async function startServer() {
