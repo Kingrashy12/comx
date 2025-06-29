@@ -1,13 +1,19 @@
 import { corsPlugin, Zoltra } from "zoltra";
-import routes from "./routes";
+import { withPrefix } from "zoltra";
+import { routes as authRoutes } from "../routes/auth";
+import { routes as otpRoutes } from "../routes/otp";
 import { IncomingMessage, ServerResponse } from "http";
+
+const routes = [
+  ...withPrefix("user", authRoutes),
+  ...withPrefix("otp", otpRoutes),
+];
 
 const app = new Zoltra();
 
 app.register(corsPlugin());
 app.loadStaticRoutes(routes);
 console.log("Routes:", app._routes);
-// export default app.handler.bind(app);
 
 export default function handler(req: IncomingMessage, res: ServerResponse) {
   console.log("Handling request:", req.method, req.url);
