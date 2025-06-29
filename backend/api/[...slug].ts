@@ -10,8 +10,11 @@ console.log("Routes:", app._routes);
 // export default app.handler.bind(app);
 
 export default function handler(req: IncomingMessage, res: ServerResponse) {
+  console.log("Handling request:", req.method, req.url);
   // strip /api
   if (req.url?.startsWith("/api")) {
+    console.log("Stripping /api from URL");
+    // Replace /api with an empty string, or default to "/"
     req.url = req.url.replace(/^\/api/, "") || "/";
   }
   //   await app.start();
