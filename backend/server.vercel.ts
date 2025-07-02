@@ -4,7 +4,7 @@ import { routes as authRoutes } from "./routes/auth";
 import { routes as otpRoutes } from "./routes/otp";
 
 const routes = [
-  ...withPrefix("user", authRoutes),
+  ...withPrefix("auth", authRoutes),
   ...withPrefix("otp", otpRoutes),
 ];
 
