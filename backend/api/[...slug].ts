@@ -13,6 +13,7 @@ const app = new Zoltra();
 
 app.register(corsPlugin());
 app.loadStaticRoutes(routes);
+app.loadInit();
 
 export default function handler(req: IncomingMessage, res: ServerResponse) {
   // strip /api
