@@ -19,4 +19,4 @@ app.loadStaticRoutes([
 
 app.loadInit();
 
-export default app.exportHandler;
+export default app.exportHandler();

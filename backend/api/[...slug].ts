@@ -14,4 +14,4 @@ app.register(corsPlugin());
 app.loadStaticRoutes(routes);
 app.loadInit();
 
-export default app.exportHandler;
+export default app.exportHandler();
