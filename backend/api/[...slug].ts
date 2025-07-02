@@ -1,4 +1,4 @@
-import { corsPlugin, Zoltra } from "zoltra";
+import { corsPlugin, Zoltra, ZoltraRequest, ZoltraResponse } from "zoltra";
 import { withPrefix } from "zoltra";
 import { routes as authRoutes } from "../routes/auth";
 import { routes as otpRoutes } from "../routes/otp";
@@ -14,4 +14,7 @@ app.register(corsPlugin());
 app.loadStaticRoutes(routes);
 app.loadInit();
 
-export default app.exportHandler();
+export default function handler(req: ZoltraRequest, res: ZoltraResponse) {
+  //   return app.exportHandler()(req, res);
+  res.json({ url: req.url });
+}
